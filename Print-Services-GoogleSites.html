@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print Services | Poway UPS Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Lato:wght@300;400;700;900&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --ups-blue: #0097b2;
+            --ups-blue-dark: #007a92;
+            --ups-blue-light: #e6f7fa;
+            --ups-yellow: #ffdd00;
+            --ups-yellow-dark: #e6c700;
+            --white: #ffffff;
+            --gray-50: #fafafa;
+            --gray-100: #f5f5f5;
+            --gray-200: #eeeeee;
+            --gray-300: #e0e0e0;
+            --gray-700: #616161;
+            --gray-900: #212121;
+            --shadow-sm: 0 2px 8px rgba(0, 151, 178, 0.08);
+            --shadow-md: 0 4px 16px rgba(0, 151, 178, 0.12);
+            --shadow-lg: 0 8px 32px rgba(0, 151, 178, 0.16);
+            --shadow-xl: 0 12px 48px rgba(0, 151, 178, 0.2);
+        }
+        
+        body { 
+            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--gray-900);
+            background: linear-gradient(to bottom, var(--ups-blue-light) 0%, var(--white) 400px);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; }
+        
+        .top-banner { 
+            background: linear-gradient(135deg, var(--ups-blue) 0%, var(--ups-blue-dark) 100%);
+            color: var(--white);
+            padding: 24px 20px;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .banner-content { 
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 280px 1fr 280px;
+            gap: 32px;
+            align-items: center;
+        }
+        
+        .logo-section { display: flex; align-items: center; gap: 16px; }
+        
+        .ups-logo { 
+            background: var(--ups-yellow);
+            width: 72px;
+            height: 72px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Lato', sans-serif;
+            font-weight: 900;
+            font-size: 28px;
+            color: var(--ups-blue);
+            box-shadow: 0 4px 16px rgba(255, 221, 0, 0.4);
+            letter-spacing: -1px;
+        }
+        
+        .store-title h1 { 
+            font-size: 24px;
+            margin-bottom: 4px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        
+        .tagline { 
+            color: var(--ups-yellow);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        
+        .why-choose { 
+            text-align: center;
+            font-size: 13px;
+            color: var(--white);
+            font-weight: 500;
+        }
+        
+        .why-choose span { margin: 0 12px; white-space: nowrap; }
+        .separator { color: var(--ups-yellow); margin: 0 8px; font-weight: 300; }
+        
+        .contact-section { text-align: right; }
+        .contact-info { font-size: 13px; margin-bottom: 8px; line-height: 1.6; opacity: 0.95; }
+        .contact-info a { color: var(--ups-yellow); text-decoration: none; font-weight: 600; transition: opacity 0.2s; }
+        .contact-info a:hover { opacity: 0.8; }
+        
+        .call-btn { 
+            display: inline-block;
+            padding: 12px 24px;
+            background: var(--ups-yellow);
+            color: var(--ups-blue);
+            text-decoration: none;
+            border-radius: 24px;
+            font-weight: 700;
+            font-size: 14px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(255, 221, 0, 0.3);
+            margin: 4px;
+            letter-spacing: 0.3px;
+        }
+        
+        .call-btn:hover { 
+            background: var(--ups-yellow-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(255, 221, 0, 0.4);
+        }
+        
+        .call-btn.secondary {
+            background: var(--white);
+            color: var(--ups-blue);
+        }
+        
+        .main-container { 
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 24px;
+            padding: 32px 20px;
+        }
+        
+        .left-nav { 
+            flex: 0 0 240px;
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+        
+        .nav-card { 
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--gray-200);
+        }
+        
+        .nav-btn { 
+            display: block;
+            width: 100%;
+            padding: 16px 20px;
+            background: var(--white);
+            border: none;
+            border-bottom: 1px solid var(--gray-200);
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--gray-700);
+            font-family: 'IBM Plex Sans', sans-serif;
+        }
+        
+        .nav-btn:last-child { border-bottom: none; }
+        
+        .nav-btn:hover { 
+            background: var(--ups-blue-light);
+            padding-left: 28px;
+            color: var(--ups-blue);
+        }
+        
+        .nav-btn.active { 
+            background: linear-gradient(135deg, var(--ups-blue) 0%, var(--ups-blue-dark) 100%);
+            color: var(--white);
+            font-weight: 700;
+            border-left: 4px solid var(--ups-yellow);
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .content-area { flex: 1; }
+        
+        .tab-content { display: none; }
+        .tab-content.active { 
+            display: block;
+            animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section-header { 
+            background: linear-gradient(135deg, var(--white) 0%, var(--gray-50) 100%);
+            padding: 32px;
+            border-radius: 16px;
+            margin-bottom: 32px;
+            box-shadow: var(--shadow-md);
+            border-left: 6px solid var(--ups-yellow);
+        }
+        
+        .section-header h2 { 
+            color: var(--ups-blue);
+            font-size: 32px;
+            margin-bottom: 8px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        
+        .service-list { 
+            font-size: 14px;
+            color: var(--gray-700);
+            font-weight: 500;
+            letter-spacing: 0.2px;
+        }
+        
+        .product-grid { 
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
+        }
+        
+        .product-card { 
+            background: var(--white);
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--ups-blue) 0%, var(--ups-yellow) 100%);
+            transform: scaleX(0);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .product-card:hover::before { transform: scaleX(1); }
+        
+        .product-card:hover { 
+            border-color: var(--ups-yellow);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .product-card h3 { 
+            color: var(--ups-blue);
+            font-size: 22px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid var(--ups-yellow);
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+        
+        .product-details { 
+            font-size: 15px;
+            line-height: 1.8;
+            color: var(--gray-700);
+            margin-bottom: 20px;
+        }
+        
+        .product-why { 
+            background: var(--ups-blue-light);
+            padding: 16px;
+            border-radius: 12px;
+            margin: 16px 0;
+            font-size: 14px;
+            color: var(--gray-900);
+            border-left: 3px solid var(--ups-blue);
+        }
+        
+        .price-box { 
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 24px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+        
+        .price { 
+            color: #2e7d32;
+            font-size: 28px;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .order-btn { 
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--ups-yellow) 0%, var(--ups-yellow-dark) 100%);
+            color: var(--ups-blue);
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(255, 221, 0, 0.3);
+        }
+        
+        .order-btn:hover { 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 221, 0, 0.4);
+        }
+        
+        .note { 
+            font-size: 13px;
+            color: var(--gray-700);
+            text-align: center;
+            margin-top: 12px;
+            font-style: italic;
+        }
+        
+        .click-hint { 
+            font-size: 13px;
+            color: var(--ups-blue);
+            text-align: center;
+            margin-top: 8px;
+            font-weight: 600;
+        }
+        
+        .process-flow { 
+            background: var(--white);
+            padding: 32px;
+            border-radius: 16px;
+            margin: 32px 0;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .process-flow h3 { 
+            color: var(--ups-blue);
+            font-size: 24px;
+            margin-bottom: 28px;
+            text-align: center;
+            font-weight: 700;
+        }
+        
+        .process-steps { 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .process-step { 
+            flex: 1;
+            min-width: 100px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .step-box { 
+            background: linear-gradient(135deg, var(--ups-blue) 0%, var(--ups-blue-dark) 100%);
+            color: var(--white);
+            padding: 20px 16px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s;
+        }
+        
+        .step-box:hover { transform: translateY(-4px); }
+        
+        .step-number { 
+            background: var(--ups-yellow);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            font-weight: 700;
+            color: var(--ups-blue);
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .step-title { 
+            font-weight: 700;
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+        
+        .step-desc { 
+            font-size: 13px;
+            opacity: 0.9;
+        }
+        
+        .arrow { 
+            color: var(--ups-yellow);
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .usps-specs { 
+            background: linear-gradient(135deg, #fff9e6 0%, #ffe8a1 30%);
+            border-left: 4px solid var(--ups-yellow);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .usps-specs h4 { 
+            color: var(--ups-blue);
+            margin-bottom: 12px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+        
+        .usps-specs ul { 
+            margin-left: 20px;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        
+        .info-box { 
+            background: var(--ups-blue-light);
+            border-left: 4px solid var(--ups-blue);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+        
+        .info-box h4 { 
+            color: var(--ups-blue);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+        
+        .terms-section { 
+            background: var(--white);
+            padding: 32px;
+            border-radius: 16px;
+            margin-top: 40px;
+            box-shadow: var(--shadow-md);
+            border-left: 6px solid var(--ups-yellow);
+        }
+        
+        .terms-section h3 { 
+            color: var(--ups-blue);
+            font-size: 24px;
+            margin-bottom: 24px;
+            font-weight: 700;
+        }
+        
+        .terms-section ul { margin-left: 24px; }
+        .terms-section li { margin: 12px 0; color: var(--gray-700); line-height: 1.8; }
+        
+        footer { 
+            background: linear-gradient(135deg, var(--ups-blue) 0%, var(--ups-blue-dark) 100%);
+            color: var(--white);
+            padding: 48px 20px;
+            margin-top: 64px;
+        }
+        
+        .footer-content { 
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 48px;
+        }
+        
+        .footer-section h3 { 
+            color: var(--ups-yellow);
+            font-size: 18px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--ups-yellow);
+            padding-bottom: 12px;
+            font-weight: 700;
+        }
+        
+        .footer-section ul { list-style: none; }
+        .footer-section li { margin: 10px 0; }
+        
+        .footer-section a { 
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.2s;
+            font-size: 14px;
+        }
+        
+        .footer-section a:hover { color: var(--ups-yellow); }
+        
+        .map-link { 
+            display: inline-block;
+            padding: 12px 24px;
+            background: var(--ups-yellow);
+            color: var(--ups-blue);
+            border-radius: 24px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 16px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(255, 221, 0, 0.3);
+        }
+        
+        .map-link:hover { 
+            background: var(--ups-yellow-dark);
+            transform: translateY(-2px);
+        }
+        
+        .copyright { 
+            text-align: center;
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 1024px) {
+            .banner-content { grid-template-columns: 1fr; text-align: center; gap: 20px; }
+            .logo-section { justify-content: center; }
+            .contact-section { text-align: center; }
+            .main-container { flex-direction: column; }
+            .left-nav { position: static; flex: none; }
+            .nav-card { display: grid; grid-template-columns: repeat(2, 1fr); }
+            .footer-content { grid-template-columns: 1fr; gap: 32px; }
+            .process-steps { flex-direction: column; }
+            .arrow { transform: rotate(90deg); }
+        }
+        
+        @media (max-width: 640px) {
+            .why-choose { font-size: 11px; }
+            .nav-card { grid-template-columns: 1fr; }
+            .product-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header class="top-banner">
+        <div class="banner-content">
+            <div class="logo-section">
+                <div class="ups-logo">UPS</div>
+                <div class="store-title">
+                    <h1>Poway UPS Store</h1>
+                    <p class="tagline">Print Smart. Print Local. Print Fast.</p>
+                </div>
+            </div>
+            <div class="why-choose">
+                <span>Locally Owned</span>
+                <span class="separator">|</span>
+                <span>Quality Guaranteed</span>
+                <span class="separator">|</span>
+                <span>Fast Service</span>
+                <span class="separator">|</span>
+                <span>Design Help</span>
+            </div>
+            <div class="contact-section">
+                <div class="contact-info">Poway UPS Store, Near CVS</div>
+                <div class="contact-info">📞 <a href="tel:858-866-8887">858-866-8887</a> | 📧 <a href="/cdn-cgi/l/email-protection#47372830263e32373407202a262e2b6924282a"><span class="__cf_email__" data-cfemail="1969766e78606c696a597e74787075377a7674">[email&#160;protected]</span></a></div>
+                <a href="/cdn-cgi/l/email-protection#7003041f0215484041443004181505000303041f02155e131f1d4f0305121a1513044d21051f04155022150105150304" class="call-btn">Request Quote</a>
+                <a href="Business-Services-Complete-Final.html" class="call-btn secondary">All Services</a>
+            </div>
+        </div>
+    </header>
+    
+    <div class="main-container">
+        <nav class="left-nav">
+            <div class="nav-card">
+                <button class="nav-btn active" onclick="switchTab(event, 'favorites')">Customer Favorites</button>
+                <button class="nav-btn" onclick="switchTab(event, 'premium')">Premium Services</button>
+                <button class="nav-btn" onclick="switchTab(event, 'specialty')">Specialty Items</button>
+                <button class="nav-btn" onclick="switchTab(event, 'eddm')">EDDM & Direct Mail</button>
+            </div>
+        </nav>
+        
+        <main class="content-area">
+            <div id="favorites" class="tab-content active">
+                <div class="section-header">
+                    <h2>Customer Favorites</h2>
+                    <p class="service-list">Click any product to see examples!</p>
+                </div>
+                <div class="product-grid">
+                    <div class="product-card" onclick="window.open('https://www.google.com/search?tbm=isch&q=business+cards+printed', '_blank')">
+                        <h3>Business Cards</h3>
+                        <div class="product-why">
+                            <strong>Why:</strong> Essential networking tool that leaves a lasting first impression.<br>
+                            <strong>Most Common:</strong> 3.5" x 2" on 14pt cardstock
+                        </div>
+                        <div class="product-details">
+                            Full color, both sides | Glossy or matte finish
+                        </div>
+                        <div class="price-box"><div class="price">250 qty - $45</div></div>
+                        <button class="order-btn" onclick="event.stopPropagation(); window.location.href='mailto:store8014@theupsstore.com?subject=Business Cards Order'">Order Now</button>
+                        <p class="click-hint">Click card to see examples</p>
+                    </div>
+                    
+                    <div class="product-card" onclick="window.open('https://www.google.com/search?tbm=isch&q=promotional+flyers', '_blank')">
+                        <h3>Flyers</h3>
+                        <div class="product-why">
+                            <strong>Why:</strong> Cost-effective way to reach many people quickly.<br>
+                            <strong>Most Common:</strong> 8.5" x 11" on 28# paper
+                        </div>
+                        <div class="product-details">
+                            Single sided: 100 qty - $70<br>
+                            Double sided: 100 qty - $95
+                        </div>
+                        <div class="price-box"><div class="price">From $70</div></div>
+                        <button class="order-btn" onclick="event.stopPropagation(); window.location.href='mailto:store8014@theupsstore.com?subject=Flyers Order'">Order Now</button>
+                        <p class="click-hint">Click card to see examples</p>
+                    </div>
+                    
+                    <div class="product-card" onclick="window.open('https://www.google.com/search?tbm=isch&q=custom+poster+printing', '_blank')">
+                        <h3>Custom Posters</h3>
+                        <div class="product-why">
+                            <strong>Why:</strong> Eye-catching displays for retail, events, or decor.<br>
+                            <strong>Most Common:</strong> 24" x 36" on bond or photo paper
+                        </div>
+                        <div class="product-details">
+                            12"x18": $18 ea (10+: $12 ea)<br>
+                            18"x24": $24 ea (10+: $19 ea)<br>
+                            24"x36": $29 ea (10+: $24 ea)
+                        </div>
+                        <div class="price-box"><div class="price">From $18 ea</div></div>
+                        <button class="order-btn" onclick="event.stopPropagation(); window.location.href='mailto:store8014@theupsstore.com?subject=Posters Order'">Order Now</button>
+                        <p class="click-hint">Click card to see examples</p>
+                    </div>
+                    
+                    <div class="product-card" onclick="window.open('https://www.google.com/search?tbm=isch&q=yard+signs+real+estate', '_blank')">
+                        <h3>Yard Signs</h3>
+                        <div class="product-why">
+                            <strong>Why:</strong> Durable outdoor advertising at point-of-interest.<br>
+                            <strong>Most Common:</strong> 18"x24" corrugated plastic with stakes
+                        </div>
+                        <div class="product-details">
+                            Single sided: $20 ea<br>
+                            Double sided: $28 ea
+                        </div>
+                        <div class="price-box"><div class="price">From $20 ea</div></div>
+                        <button class="order-btn" onclick="event.stopPropagation(); window.location.href='mailto:store8014@theupsstore.com?subject=Yard Signs Order'">Order Now</button>
+                        <p class="click-hint">Click card to see examples</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="premium" class="tab-content">
+                <div class="section-header">
+                    <h2>Premium Services</h2>
+                    <p class="service-list">Upgrade to premium quality - Ask to see our samples in store!</p>
+                </div>
+                
+                <div class="info-box">
+                    <h4>What Makes Premium Different?</h4>
+                    <ul style="margin-left: 20px; line-height: 1.8;">
+                        <li>Thicker Stock: 16pt vs standard 14pt - more substantial feel</li>
+                        <li>Premium Finishes: Spot UV, foil stamping, embossing available</li>
+                        <li>Better Paper Quality: Brighter whites, richer colors, superior durability</li>
+                        <li>Professional Edge: Stand out from competitors with premium materials</li>
+                    </ul>
+                </div>
+                
+                <div class="product-grid">
+                    <div class="product-card" onclick="window.open('https://www.google.com/search?tbm=isch&q=premium+business+cards+16pt', '_blank')">
+                        <h3>Premium Business Cards</h3>
+                        <div class="product-why">
+                            <strong>Why Upgrade:</strong> Thicker 16pt stock conveys quality and professionalism.<br>
+                            <strong>Best For:</strong> Executives, luxury brands, high-end businesses
+                        </div>
+                        <div class="product-details">
+                            16pt premium thickness<br>
+                            250 qty - Single-sided: $40 | Double-sided: $50
+                        </div>
+                        <div class="price-box"><div class="price">From $40</div></div>
+                        <button class="order-btn" onclick="event.stopPropagation(); window.location.href='mailto:store8014@theupsstore.com?subject=Premium Business Cards'">Order Now</button>
+                        <p class="note">Foil stamping +$25-$50 • Spot UV +$20-$40</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="specialty" class="tab-content">
+                <div class="section-header">
+                    <h2>Specialty Items</h2>
+                    <p class="service-list">Custom products for special needs - all sizes & designs available!</p>
+                </div>
+                <div class="product-grid">
+                    <div class="product-card" onclick="window.open('https://www.google.com/search?tbm=isch&q=custom+stickers+designs', '_blank')">
+                        <h3>Custom Stickers</h3>
+                        <div class="product-why">
+                            <strong>Why:</strong> Versatile branding tool for products, packaging, giveaways.<br>
+                            <strong>Most Common:</strong> 2"-4" round or square on vinyl
+                        </div>
+                        <div class="product-details">
+                            Any size, shape, or finish<br>
+                            Die-cut or standard shapes<br>
+                            Indoor or outdoor use
+                        </div>
+                        <div class="price-box"><div class="price">Get Quote</div></div>
+                        <button class="order-btn" onclick="event.stopPropagation(); window.location.href='mailto:store8014@theupsstore.com?subject=Custom Stickers'">Request Info</button>
+                        <p class="click-hint">Click card to see examples</p>
+                    </div>
+                    
+                    <div class="product-card" onclick="window.open('https://www.google.com/search?tbm=isch&q=retractable+banner+stands', '_blank')">
+                        <h3>Retractable Banners</h3>
+                        <div class="product-why">
+                            <strong>Why:</strong> Professional portable displays for trade shows and events.<br>
+                            <strong>Most Common:</strong> 33"x80" with carrying case
+                        </div>
+                        <div class="product-details">
+                            Pull-up banner stands<br>
+                            Portable and reusable<br>
+                            Setup in under 30 seconds
+                        </div>
+                        <div class="price-box"><div class="price">Get Quote</div></div>
+                        <button class="order-btn" onclick="event.stopPropagation(); window.location.href='mailto:store8014@theupsstore.com?subject=Retractable Banners'">Request Info</button>
+                        <p class="click-hint">Click card to see examples</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="eddm" class="tab-content">
+                <div class="section-header">
+                    <h2>EDDM & Direct Mail Services</h2>
+                    <p class="service-list">Complete service or help at any step - we handle everything!</p>
+                </div>
+                
+                <div class="process-flow">
+                    <h3>EDDM Campaign Process</h3>
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <div class="step-box">
+                                <div class="step-number">1</div>
+                                <div class="step-title">Design</div>
+                                <div class="step-desc">Custom or template</div>
+                            </div>
+                        </div>
+                        <span class="arrow">→</span>
+                        <div class="process-step">
+                            <div class="step-box">
+                                <div class="step-number">2</div>
+                                <div class="step-title">Print</div>
+                                <div class="step-desc">High-quality color</div>
+                            </div>
+                        </div>
+                        <span class="arrow">→</span>
+                        <div class="process-step">
+                            <div class="step-box">
+                                <div class="step-number">3</div>
+                                <div class="step-title">Proofing</div>
+                                <div class="step-desc">Your approval</div>
+                            </div>
+                        </div>
+                        <span class="arrow">→</span>
+                        <div class="process-step">
+                            <div class="step-box">
+                                <div class="step-number">4</div>
+                                <div class="step-title">Route Select</div>
+                                <div class="step-desc">Target area</div>
+                            </div>
+                        </div>
+                        <span class="arrow">→</span>
+                        <div class="process-step">
+                            <div class="step-box">
+                                <div class="step-number">5</div>
+                                <div class="step-title">Handling</div>
+                                <div class="step-desc">Bundle & label</div>
+                            </div>
+                        </div>
+                        <span class="arrow">→</span>
+                        <div class="process-step">
+                            <div class="step-box">
+                                <div class="step-number">6</div>
+                                <div class="step-title">Postage</div>
+                                <div class="step-desc">Bulk rate</div>
+                            </div>
+                        </div>
+                        <span class="arrow">→</span>
+                        <div class="process-step">
+                            <div class="step-box">
+                                <div class="step-number">7</div>
+                                <div class="step-title">Delivery</div>
+                                <div class="step-desc">Every door</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="usps-specs">
+                    <h4>USPS Requirements for EDDM & Direct Mail</h4>
+                    <p><strong>We prepare your prints to meet all USPS specifications:</strong></p>
+                    <ul>
+                        <li>Size: Minimum 6.125" x 11.5" | Maximum 12" x 15"</li>
+                        <li>Thickness: 0.007" to 0.25" (we recommend 100# gloss cover)</li>
+                        <li>Addressing: "Postal Customer" required for EDDM</li>
+                        <li>Indicia: Upper right corner for bulk mail permit</li>
+                        <li>Bundling: Sorted by carrier route, bundled in groups of 50-100</li>
+                    </ul>
+                </div>
+                
+                <div style="background: white; padding: 24px; border-radius: 16px; margin: 24px 0; box-shadow: var(--shadow-md);">
+                    <h3 style="color: var(--ups-blue); margin-bottom: 16px; font-size: 20px;">What We Print for EDDM & Direct Mail:</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+                        <div style="background: var(--gray-50); padding: 16px; border-radius: 12px; border-left: 3px solid var(--ups-blue);">
+                            <strong>Postcards</strong><br>
+                            <span style="font-size: 14px; color: var(--gray-700);">4"x6", 5"x7", 6"x9"</span>
+                        </div>
+                        <div style="background: var(--gray-50); padding: 16px; border-radius: 12px; border-left: 3px solid var(--ups-blue);">
+                            <strong>Flyers</strong><br>
+                            <span style="font-size: 14px; color: var(--gray-700);">8.5"x11" or 11"x17"</span>
+                        </div>
+                        <div style="background: var(--gray-50); padding: 16px; border-radius: 12px; border-left: 3px solid var(--ups-blue);">
+                            <strong>Bi-folds & Tri-folds</strong><br>
+                            <span style="font-size: 14px; color: var(--gray-700);">Professional look</span>
+                        </div>
+                        <div style="background: var(--gray-50); padding: 16px; border-radius: 12px; border-left: 3px solid var(--ups-blue);">
+                            <strong>Z-folds</strong><br>
+                            <span style="font-size: 14px; color: var(--gray-700);">6-panel accordion</span>
+                        </div>
+                        <div style="background: var(--gray-50); padding: 16px; border-radius: 12px; border-left: 3px solid var(--ups-blue);">
+                            <strong>Booklets</strong><br>
+                            <span style="font-size: 14px; color: var(--gray-700);">Multi-page catalogs</span>
+                        </div>
+                        <div style="background: var(--gray-50); padding: 16px; border-radius: 12px; border-left: 3px solid var(--ups-blue);">
+                            <strong>Self-Mailers</strong><br>
+                            <span style="font-size: 14px; color: var(--gray-700);">No envelope needed</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin: 32px 0;">
+                    <button class="order-btn" style="max-width: 400px; font-size: 16px; padding: 18px;" onclick="window.location.href='mailto:store8014@theupsstore.com?subject=EDDM Campaign Quote'">Get EDDM Quote</button>
+                </div>
+            </div>
+            
+            <div class="terms-section">
+                <h3>Pricing, Fees & Terms</h3>
+                <ul>
+                    <li><strong>Payment:</strong> Full payment required before production begins</li>
+                    <li><strong>Design Fees:</strong> Simple $25-$75 | Standard $75-$150 | Complex $150-$500</li>
+                    <li><strong>Rush Fees:</strong> Same day +$75 | Next day +$50 | 3-day +$25 | 4-day +$15</li>
+                    <li><strong>Premium Finishes:</strong> UV coating +$20-$40 | Lamination +$35-$65 | Foil +$25-$50</li>
+                    <li><strong>3rd Party Vendor Shipping:</strong> 10% fee on orders under $250 (FREE over $250)</li>
+                    <li><strong>Cancellation:</strong> 25% fee within 48hrs | 50% after 48hrs | Final after 72hrs</li>
+                    <li><strong>Taxes:</strong> All prices exclude sales tax (added at checkout)</li>
+                </ul>
+            </div>
+        </main>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Information</h3>
+                <p><strong>Poway UPS Store #8014</strong></p>
+                <p>📍 12368 Poway Rd., Poway, CA 92064</p>
+                <p>(Near CVS, Behind Chase Bank)</p>
+                <p>📞 <a href="tel:858-866-8887">858-866-8887</a></p>
+                <p>📧 <a href="/cdn-cgi/l/email-protection#83f3ecf4e2faf6f3f0c3e4eee2eaefade0ecee"><span class="__cf_email__" data-cfemail="43332c34223a36333003242e222a2f6d202c2e">[email&#160;protected]</span></a></p>
+                <p>📧 <a href="/cdn-cgi/l/email-protection#4d3e39223f28757d7c790d392528383d3e3e39223f28632e2220"><span class="__cf_email__" data-cfemail="85f6f1eaf7e0bdb5b4b1c5f1ede0f0f5f6f6f1eaf7e0abe6eae8">[email&#160;protected]</span></a></p>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=12368+Poway+Rd+Poway+CA+92064" target="_blank" class="map-link">Get Directions</a>
+            </div>
+            <div class="footer-section">
+                <h3>Print Services</h3>
+                <ul>
+                    <li><a href="#favorites">Business Cards</a></li>
+                    <li><a href="#favorites">Flyers & Posters</a></li>
+                    <li><a href="#favorites">Photo Printing</a></li>
+                    <li><a href="#premium">Premium Business Cards</a></li>
+                    <li><a href="#specialty">Custom Stickers</a></li>
+                    <li><a href="#specialty">Banners & Signs</a></li>
+                    <li><a href="#eddm">EDDM Campaigns</a></li>
+                    <li><a href="#eddm">Direct Mail</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>All Services</h3>
+                <ul>
+                    <li><a href="Business-Services-Complete-Final.html">Livescan Fingerprinting</a></li>
+                    <li><a href="Business-Services-Complete-Final.html">Passport Photos</a></li>
+                    <li><a href="Business-Services-Complete-Final.html">Notary Services</a></li>
+                    <li><a href="Business-Services-Complete-Final.html">Packing & Shipping</a></li>
+                    <li><a href="Business-Services-Complete-Final.html">Mailbox Services</a></li>
+                    <li><a href="Business-Services-Complete-Final.html">Business Accounts</a></li>
+                    <li><a href="Business-Services-Complete-Final.html">Shredding Services</a></li>
+                    <li><a href="Business-Services-Complete-Final.html">Lamination</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2026 UPS Store #8014 • All Rights Reserved • Serving Poway with pride</p>
+        </div>
+    
+    <script>
+        function switchTab(evt, tabName) {
+            var contents = document.getElementsByClassName('tab-content');
+            for (var i = 0; i < contents.length; i++) {
+                contents[i].classList.remove('active');
+            }
+            var navBtns = document.getElementsByClassName('nav-btn');
+            for (var i = 0; i < navBtns.length; i++) {
+                navBtns[i].classList.remove('active');
+            }
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
